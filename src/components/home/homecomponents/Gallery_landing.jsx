@@ -52,8 +52,8 @@ class Gallery_landing extends React.Component {
               }}
             ></div>
           ))}
-          <div className="text-overlay">
-            <h1>Deluxe Caravans</h1>
+          <div className="text-overlay-gallery">
+            <h1>Why choose us</h1>
           </div>
         </div>
       </div>

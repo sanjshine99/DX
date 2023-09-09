@@ -1,0 +1,88 @@
+
+
+  .Product-header {
+    font-size: 75.76px; /* Adjust the font size as needed */
+    color: White; /* Make the text color transparent */
+    transition: color 0.3s ease; /* Add a smooth transition effect for the color change */
+    letter-spacing: 3px;
+  }
+
+
+  /* Add the global styles for :active, :hover, :focus */
+:active, :hover, :focus {
+    outline: 0!important;
+    outline-offset: 0;
+  }
+  
+  /* Add styles for ::before and ::after */
+  ::before,
+  ::after {
+    position: absolute;
+    content: "";
+  }
+  
+  /* Container for the buttons */
+  .btn-holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 10px auto 35px;
+  }
+  
+  /* Button styles */
+  .btn {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    margin: 0px 25px 15px;
+    min-width: 150px;
+    transition: 0.3s;
+    font-size: 20px;
+  }
+  
+  /* Button text styles */
+  .btn span {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+  }
+  
+  /* Add the hover border effect */
+  .btn.hover-border-1::before,
+  .btn.hover-border-1::after {
+    width: 10%;
+    height: 25%;
+    transition: 0.35s;
+  }
+  .btn.hover-border-1::before {
+    top: 0;
+    left: 0;
+    border-left: 1px solid rgb(255, 255, 255);
+    border-top: 1px solid rgb(255, 255, 255);
+  }
+  .btn.hover-border-1::after {
+    bottom: 0;
+    right: 0;
+    border-right: 1px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+  .btn.hover-border-1:hover::before,
+  .btn.hover-border-1:hover::after {
+    width: 99%;
+    height: 98%;
+  }
+  

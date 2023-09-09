@@ -34,7 +34,7 @@ function VideoLanding() {
             muted
           ></video>
           <div className="text-overlay">
-            <h1>Deluxe Caravans</h1>
+            <h1>DELUXE CARAVANS</h1>
           </div>
         </div>
       )}

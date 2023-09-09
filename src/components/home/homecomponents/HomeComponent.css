@@ -55,20 +55,43 @@
   transition: background-color 0.3s ease; /* Add a smooth transition effect for the background-color change */
 }
 
+.text-overlay-gallery {
+  position: absolute;
+  top: 1000px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.096); /* Adjust the background color and opacity as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide any overflowing text */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect for the background-color change */
+}
+
 .text-overlay:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Change the background color on hover */
 }
 
 .text-overlay h1 {
-  font-size: 120px; /* Adjust the font size as needed */
+  font-size: 75.76px; /* Adjust the font size as needed */
   color: transparent; /* Make the text color transparent */
   -webkit-text-stroke: 2px white; /* Add a white stroke around the text (adjust the width as needed) */
   text-stroke: 2px white; /* Add a white stroke around the text (adjust the width as needed) */
   transition: color 0.3s ease; /* Add a smooth transition effect for the color change */
+  letter-spacing: 3px;
+}
+
+.text-overlay-gallery h1 {
+  font-size: 56.83px; /* Adjust the font size as needed */
+  color: #fff; /* Make the text color transparent */
+  transition: color 0.3s ease; /* Add a smooth transition effect for the color change */
+  letter-spacing: 2px;
 }
 
 .text-overlay:hover h1 {
-  color: #fff; /* Change the text color on hover */
+  color: #fff;
+/* Change the text color on hover */
 }
 
 /* Media query for mobile screens */
