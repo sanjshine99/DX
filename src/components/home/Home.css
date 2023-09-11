@@ -4,8 +4,9 @@
   }
   
   .component {
-    flex: 1; /* Each component takes up an equal portion of the available height */
-    /*border: 1px solid #ccc;  Optional: Add a border for clarity */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
     padding: 20px; /* Optional: Add padding to the components */
     min-height: 50px; /* Increase the minimum height to create more spacing */
     height: 100vh; 

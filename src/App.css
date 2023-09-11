@@ -1,23 +1,38 @@
 @font-face {
-  font-family: 'NeueHaasDisplay';
-  src: url('./assets/font/NeueHaasDisplayBlack.ttf') format('truetype');
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('./assets/font/ITC\ Avant\ Garde\ Gothic\ Pro-Bold.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NeueHaasDisplay';
-  src: url('./assets/font/NeueHaasDisplayBold.ttf') format('truetype');
-  font-weight: bold;
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('./assets/font/ITC\ Avant\ Garde\ Gothic\ Pro-Book.otf') format('opentype');
+  font-weight: 400; /* Book font-weight */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NeueHaasDisplay';
-  src: url('./assets/font/NeueHaasDisplayRoman.ttf') format('truetype');
-  font-weight: 300;
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('./assets/font/ITC\ Avant\ Garde\ Gothic\ Pro-Demi.otf') format('opentype');
+  font-weight: 600; /* Demi font-weight */
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('./assets/font/ITC\ Avant\ Garde\ Gothic\ Pro-Medium.otf') format('opentype');
+  font-weight: 500; /* Medium font-weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ITC Avant Gaarde Gothic Pro';
+  src: url('./assets/font/ITC\ Avant\ Garde\ Gothic\ Pro-XLt.otf') format('opentype');
+  font-weight: 100; /* XLt font-weight */
+  font-style: normal;
+}
+
 
 :root{
   background-color: black;
@@ -37,10 +52,8 @@
   background: #ffffff;
 }
 
-body{
-
-  font-family: 'NeueHaasDisplay', sans-serif;
-  
+body {
+  font-family: 'ITC Avant Garde Gothic Pro', sans-serif;
 }
 
 .App {
