@@ -3,7 +3,7 @@ import './HomeComponent.css'; // Import the CSS file
 
 function Partners() {
   return (
-    <div>Partners</div>
+    <div>Our Premium Partners</div>
   )
 }
 
