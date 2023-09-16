@@ -1,141 +1,89 @@
-import React, { useEffect } from "react";
-import "./HomeComponent.css"; // Create a CSS file for styling
+import React from 'react';
+import './HomeComponent.css'; 
+import Bespokemodels from '../../../assets/why choose us/customer-support.png';
+import Ecofriendly from '../../../assets/why choose us/ecology.png';
+import Experience from '../../../assets/why choose us/certification.png';
+import Ratings from '../../../assets/why choose us/customer-review.png';
 
-function Gallery_landing() {
-  useEffect(() => {
-    var $cont = document.querySelector(".cont");
-    var $elsArr = [].slice.call(document.querySelectorAll(".el"));
-    var $closeBtnsArr = [].slice.call(
-      document.querySelectorAll(".el__close-btn")
-    );
 
-    setTimeout(function () {
-      $cont.classList.remove("s--inactive");
-    }, 200);
+class Gallery_landing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [
+        'http://fpoimg.com/200x200?text=First',
+        'http://fpoimg.com/200x200?text=Second',
+        'http://fpoimg.com/200x200?text=Third',
+        // Add more image URLs here
+      ],
+      currentIndex: 0, // Current index of the displayed image
+    };
+  }
 
-    let activeElement = null;
+  componentDidMount() {
+    // Start the animation loop
+    this.animationInterval = setInterval(this.animateImages, 2000); // Change the interval as desired
+  }
 
-    $elsArr.forEach(function ($el) {
-      $el.addEventListener("click", function () {
-        if (this.classList.contains("s--active")) return;
-        $cont.classList.add("s--el-active");
-        this.classList.add("s--active");
-        activeElement = this;
-      });
+  componentWillUnmount() {
+    // Clear the animation interval when the component unmounts
+    clearInterval(this.animationInterval);
+  }
+
+  animateImages = () => {
+    this.setState((prevState) => {
+      // Calculate the next index and reset to 0 if it exceeds the image count
+      const nextIndex = (prevState.currentIndex + 1) % prevState.images.length;
+
+      return {
+        currentIndex: nextIndex,
+      };
     });
+  };
 
-    $closeBtnsArr.forEach(function ($btn) {
-      $btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        $cont.classList.remove("s--el-active");
-        if (activeElement) {
-          activeElement.classList.remove("s--active");
-          activeElement = null;
-        }
-      });
-    });
-  }, []);
-  return (
-    <>
-      <div className="Gallery_landing">
-        <div class="cont s--inactive">
-          <div class="cont__inner">
-            <div class="el">
-              <div class="el__overflow">
-                <div class="el__inner">
-                  <div class="el__bg"></div>
-                  <div class="el__preview-cont">
-                    <h2 class="el__heading">Section 1</h2>
-                  </div>
-                  <div class="el__content">
-                    {/* <div class="el__text">Whatever</div> */}
-                    <div class="el__close-btn"></div>
-                  </div>
-                </div>
-              </div>
-              {/* <div class="el__index">
-                <div class="el__index-back">1</div>
-                <div class="el__index-front">
-                  <div class="el__index-overlay" data-index="1">
-                    1
-                  </div>
-                </div>
-              </div> */}
-            </div>
+  render() {
+    const { images, currentIndex } = this.state;
 
-            <div class="el">
-              <div class="el__overflow">
-                <div class="el__inner">
-                  <div class="el__bg"></div>
-                  <div class="el__preview-cont">
-                    <h2 class="el__heading">Section 2</h2>
-                  </div>
-                  <div class="el__content">
-                    {/* <div class="el__text">Whatever</div> */}
-                    <div class="el__close-btn"></div>
-                  </div>
-                </div>
-              </div>
-              {/* <div class="el__index">
-                <div class="el__index-back">2</div>
-                <div class="el__index-front">
-                  <div class="el__index-overlay" data-index="2">
-                    2
-                  </div>
-                </div>
-              </div> */}
-            </div>
+    return (
 
-            <div class="el">
-              <div class="el__overflow">
-                <div class="el__inner">
-                  <div class="el__bg"></div>
-                  <div class="el__preview-cont">
-                    <h2 class="el__heading">Section 3</h2>
-                  </div>
-                  <div class="el__content">
-                    {/* <div class="el__text">Whatever</div> */}
-                    <div class="el__close-btn"></div>
-                  </div>
-                </div>
-              </div>
-              {/* <div class="el__index">
-                <div class="el__index-back">3</div>
-                <div class="el__index-front">
-                  <div class="el__index-overlay" data-index="3">
-                    3
-                  </div>
-                </div>
-              </div> */}
-            </div>
-
-            <div class="el">
-              <div class="el__overflow">
-                <div class="el__inner">
-                  <div class="el__bg"></div>
-                  <div class="el__preview-cont">
-                    <h2 class="el__heading">Section 4</h2>
-                  </div>
-                  <div class="el__content">
-                    {/* <div class="el__text">Whatever</div> */}
-                    <div class="el__close-btn"></div>
-                  </div>
-                </div>
-              </div>
-              {/* <div class="el__index">
-                <div class="el__index-back">4</div>
-                <div class="el__index-front">
-                  <div class="el__index-overlay" data-index="4">
-                    4
-                  </div>
-                </div>
-              </div> */}
-            </div>
-          </div>
+      <div className="gallery_landing_container">
+      <div className="text-overlay-gallery">
+        <h1>Why Choose Us</h1>
+      </div>
+      <div className="image-container">
+        <div className= 'image-item'>
+          <img src={Bespokemodels} alt="Bespokemodels" />
+          <p>Bespokemodels</p>
+        </div>
+        <div className='image-item'>
+          <img src={Ecofriendly} alt="Ecofriendly" />
+          <p>Ecofriendly</p>
+        </div>
+        <div className='image-item'>
+          <img src={Experience} alt="Experience" />
+          <p>Experience</p>
+        </div>
+        <div className='image-item'>
+          <img src={Ratings} alt="Ratings" />
+          <p>Ratings</p>
         </div>
       </div>
-    </>
-  );
+            <div className="waterfall-container">
+              {images.map((imageUrl, index) => (
+                <div
+                  key={index}
+                  className={`waterfall-item ${index === currentIndex ? 'current' : ''}`}
+                  style={{
+                    backgroundImage: `url(${imageUrl})`,
+                    animationDelay: `${index * 1}s`, // Adjust the delay as needed
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      
 }
 
 export default Gallery_landing;
