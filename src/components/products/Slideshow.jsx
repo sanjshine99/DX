@@ -1,147 +1,160 @@
-import React, { useEffect } from 'react';
-import Swiper from 'swiper';
-import charming from 'charming';
-import { TweenMax, Expo, Back, Quart } from 'gsap';
-import './Slideshow.css';
+import React, { useEffect } from "react";
+import "./Slideshow.css";
 
-const Slideshow = () => {
+function Slideshow() {
   useEffect(() => {
-    const animate = (direction = 'next') => {
-      const activeSlide = document.querySelector('.swiper-slide-active');
-      const activeSlideImg = activeSlide.querySelector('.slide-image');
-      const activeSlideTitle = activeSlide.querySelector('.slide-title');
-      const activeSlideTitleLetters = activeSlideTitle.querySelectorAll('span');
+    var $cont = document.querySelector(".cont");
+    var $elsArr = [].slice.call(document.querySelectorAll(".el"));
+    var $closeBtnsArr = [].slice.call(
+      document.querySelectorAll(".el__close-btn")
+    );
 
-      activeSlideTitleLetters.forEach((letter, pos) => {
-        TweenMax.to(letter, 0.6, {
-          ease: Back.easeOut,
-          delay: pos * 0.05,
-          startAt: { y: '50%', opacity: 0 },
-          y: '0%',
-          opacity: 1,
-        });
+    setTimeout(function () {
+      $cont.classList.remove("s--inactive");
+    }, 200);
+
+    let activeElement = null;
+
+    $elsArr.forEach(function ($el) {
+      $el.addEventListener("click", function () {
+        if (this.classList.contains("s--active")) return;
+        $cont.classList.add("s--el-active");
+        this.classList.add("s--active");
+        activeElement = this;
       });
+    });
 
-      TweenMax.to(activeSlideImg, 1.5, {
-        ease: Expo.easeOut,
-        startAt: { x: direction === 'next' ? 200 : -200 },
-        x: 0,
+    $closeBtnsArr.forEach(function ($btn) {
+      $btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        $cont.classList.remove("s--el-active");
+        if (activeElement) {
+          activeElement.classList.remove("s--active");
+          activeElement = null;
+        }
       });
-
-      const oldSlide =
-        direction === 'next'
-          ? document.querySelector('.swiper-slide-prev')
-          : document.querySelector('.swiper-slide-next');
-      if (oldSlide) {
-        const oldSlideTitle = oldSlide.querySelector('.slide-title');
-        const oldSlideTitleLetters = oldSlideTitle.querySelectorAll('span');
-
-        oldSlideTitleLetters.forEach((letter, pos) => {
-          TweenMax.to(letter, 0.3, {
-            ease: Quart.easeIn,
-            delay: (oldSlideTitleLetters.length - pos - 1) * 0.04,
-            y: '50%',
-            opacity: 0,
-          });
-        });
-      }
-    };
-
-    const animatePagination = (swiper, paginationEl) => {
-      const paginationItemsLoader = paginationEl.querySelectorAll('.pagination-separator-loader');
-      const activePaginationItem = paginationEl.querySelector('.swiper-pagination-bullet-active');
-      const activePaginationItemLoader = activePaginationItem.querySelector('.pagination-separator-loader');
-
-      TweenMax.set(paginationItemsLoader, { scaleX: 0 });
-      TweenMax.to(activePaginationItemLoader, 3, {
-        startAt: { scaleX: 0 },
-        scaleX: 1,
-      });
-    };
-
-    const init = () => {
-      const slideTitles = document.querySelectorAll('.slide-title');
-      slideTitles.forEach((slideTitle) => {
-        charming(slideTitle);
-      });
-
-      const slideshow = new Swiper('.slideshow', {
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        speed: 500,
-        preloadImages: true,
-        updateOnImagesReady: true,
-        pagination: {
-          el: '.slideshow-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.slideshow-navigation-button.next',
-          prevEl: '.slideshow-navigation-button.prev',
-        },
-        on: {
-          init: () => animate('next'),
-          paginationUpdate: (swiper, paginationEl) => animatePagination(swiper, paginationEl),
-          slideNextTransitionStart: () => animate('next'),
-          slidePrevTransitionStart: () => animate('prev'),
-        },
-      });
-    };
-
-    init();
+    });
   }, []);
 
   return (
-    <section>
-      <div className="swiper-container slideshow">
-        <div className="swiper-wrapper">
-          {/* Add your slides here */}
-          <div className="swiper-slide slide">
-            <div
-              className="slide-image"
-              style={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1538083024336-555cf8943ddc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=66b476a51b19889e13182c0e4827af18&auto=format&fit=crop&w=1950&q=80)',
-              }}
-            ></div>
-            <span className="slide-title">Exotic places</span>
+    <div className="cont s--inactive">
+      <div className="cont__inner">
+        <div className="el">
+          <div className="el__overflow">
+            <div className="el__inner">
+              <div className="el__bg">
+                <img
+                  className="el__bg"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-3.jpg"
+                  alt="1"
+                />
+              </div>
+              <div className="el__preview-cont">
+                <h2 className="el__heading">Section 1</h2>
+              </div>
+              <div className="el__content">
+                {/* <div className="el__text">Whatever</div> */}
+                <div className="el__close-btn"></div>
+              </div>
+            </div>
           </div>
-          <div className="swiper-slide slide">
-            <div
-              className="slide-image"
-              style={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e07d2457879a4e15577ec75a31023e47&auto=format&fit=crop&w=2134&q=80)',
-              }}
-            ></div>
-            <span className="slide-title">Meet ocean</span>
-          </div>
-          <div className="swiper-slide slide">
-            <div
-              className="slide-image"
-              style={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1482059470115-0aadd6bf6834?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=267bba9a4e280ec64388fe8fb01e9d1b&auto=format&fit=crop&w=1950&q=80)',
-              }}
-            ></div>
-            <span className="slide-title">Around the world</span>
-          </div>
+          {/* <div className="el__index">
+                <div className="el__index-back">1</div>
+                <div className="el__index-front">
+                  <div className="el__index-overlay" data-index="1">
+                    1
+                  </div>
+                </div>
+              </div> */}
         </div>
-        <div className="slideshow-pagination"></div>
-        <div className="slideshow-navigation">
-          <div className="slideshow-navigation-button prev">
-            <span className="fas fa-chevron-left"></span>
+        <div className="el">
+          <div className="el__overflow">
+            <div className="el__inner">
+              <div className="el__bg">
+                <img
+                  className="el__bg"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-4.jpg"
+                  alt="2"
+                />
+              </div>
+              <div className="el__preview-cont">
+                <h2 className="el__heading">Section 2</h2>
+              </div>
+              <div className="el__content">
+                {/* <div className="el__text">Whatever</div> */}
+                <div className="el__close-btn"></div>
+              </div>
+            </div>
           </div>
-          <div className="slideshow-navigation-button next">
-            <span className="fas fa-chevron-right"></span>
+          {/* <div className="el__index">
+                <div className="el__index-back">2</div>
+                <div className="el__index-front">
+                  <div className="el__index-overlay" data-index="2">
+                    2
+                  </div>
+                </div>
+              </div> */}
+        </div>
+        <div className="el">
+          <div className="el__overflow">
+            <div className="el__inner">
+              <div className="el__bg">
+                <img
+                  className="el__bg"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-5.jpg"
+                  alt="3"
+                />
+              </div>
+              <div className="el__preview-cont">
+                <h2 className="el__heading">Section 3</h2>
+              </div>
+              <div className="el__content">
+                {/* <div className="el__text">Whatever</div> */}
+                <div className="el__close-btn"></div>
+              </div>
+            </div>
           </div>
+          {/* <div className="el__index">
+                <div className="el__index-back">3</div>
+                <div className="el__index-front">
+                  <div className="el__index-overlay" data-index="3">
+                    3
+                  </div>
+                </div>
+              </div> */}
+        </div>
+
+        <div className="el">
+          <div className="el__overflow">
+            <div className="el__inner">
+              <div className="el__bg">
+                <img
+                  className="el__bg"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-6.jpg"
+                  alt="4"
+                />
+              </div>
+              <div className="el__preview-cont">
+                <h2 className="el__heading">Section 4</h2>
+              </div>
+              <div className="el__content">
+                {/* <div className="el__text">Whatever</div> */}
+                <div className="el__close-btn"></div>
+              </div>
+            </div>
+          </div>
+          {/* <div className="el__index">
+                <div className="el__index-back">4</div>
+                <div className="el__index-front">
+                  <div className="el__index-overlay" data-index="4">
+                    4
+                  </div>
+                </div>
+              </div> */}
         </div>
       </div>
-    </section>
+    </div>
   );
-};
+}
 
 export default Slideshow;
