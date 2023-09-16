@@ -9,9 +9,7 @@ function Home() {
   return (
     <div className="container">
       <Video />
-      <div className="component">
-        <Gallery />
-      </div>
+      <Gallery />
       <div className="component">
         <Reviews />
       </div>
